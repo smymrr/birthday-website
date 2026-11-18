@@ -1,0 +1,463 @@
+:root {
+  --plum-deep: #241a33;
+  --plum-panel: #31213f;
+  --gold: #f4c95d;
+  --coral: #f2789f;
+  --cream: #f8f1e7;
+  --cream-dim: #cdc1d6;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--plum-deep);
+  color: var(--cream);
+  font-family: "Sora", sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+a {
+  color: var(--gold);
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Fraunces", serif;
+  font-weight: 600;
+}
+
+/* ---------- Floating decoration layer ---------- */
+
+.sky {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -140px;
+  width: 46px;
+  height: 58px;
+  border-radius: 50% 50% 50% 50% / 58% 58% 42% 42%;
+  opacity: 0.85;
+  animation: rise linear infinite;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  bottom: -40px;
+  left: 50%;
+  width: 1px;
+  height: 40px;
+  background: rgba(248, 241, 231, 0.35);
+}
+
+.balloon.b1 {
+  left: 6%;
+  background: var(--coral);
+  animation-duration: 22s;
+  animation-delay: 0s;
+}
+.balloon.b2 {
+  left: 18%;
+  background: var(--gold);
+  animation-duration: 28s;
+  animation-delay: 4s;
+  width: 36px;
+  height: 46px;
+}
+.balloon.b3 {
+  left: 32%;
+  background: #8f7fd6;
+  animation-duration: 19s;
+  animation-delay: 9s;
+}
+.balloon.b4 {
+  left: 58%;
+  background: var(--gold);
+  animation-duration: 26s;
+  animation-delay: 2s;
+  width: 40px;
+  height: 52px;
+}
+.balloon.b5 {
+  left: 74%;
+  background: var(--coral);
+  animation-duration: 23s;
+  animation-delay: 7s;
+}
+.balloon.b6 {
+  left: 88%;
+  background: #8f7fd6;
+  animation-duration: 30s;
+  animation-delay: 1s;
+  width: 34px;
+  height: 44px;
+}
+
+@keyframes rise {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-58vh) translateX(24px) rotate(4deg);
+  }
+  100% {
+    transform: translateY(-118vh) translateX(-16px) rotate(-3deg);
+  }
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+}
+
+.eyebrow-cake {
+  font-size: 2.6rem;
+  margin-bottom: 1.2rem;
+  opacity: 0;
+  animation: pop-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.15s forwards;
+}
+
+.hero h1 {
+  font-size: clamp(2.6rem, 8vw, 5.4rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  animation: rise-in 0.9s ease-out 0.35s forwards;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero .age {
+  margin-top: 1.4rem;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.4vw, 1.5rem);
+  color: var(--cream-dim);
+  opacity: 0;
+  animation: rise-in 0.9s ease-out 0.6s forwards;
+}
+
+.hero .age strong {
+  color: var(--coral);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2.4rem;
+  font-size: 0.85rem;
+  color: var(--cream-dim);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0;
+  animation: fade 1s ease-out 1.2s forwards;
+}
+
+.scroll-hint span {
+  width: 1px;
+  height: 26px;
+  background: var(--cream-dim);
+  animation: stretch 1.8s ease-in-out infinite;
+  transform-origin: top;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4) rotate(-14deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(-6deg);
+  }
+}
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes stretch {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+/* ---------- Shared section styling ---------- */
+
+section {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 6rem 1.75rem;
+}
+
+.panel {
+  background: var(--plum-panel);
+  border-radius: 22px;
+  padding: 3rem 2.4rem;
+}
+
+.kicker {
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  color: var(--coral);
+  font-size: 1.05rem;
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+section h2 {
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  margin-bottom: 1.4rem;
+}
+
+section p {
+  color: var(--cream-dim);
+  line-height: 1.75;
+  font-size: 1.05rem;
+  max-width: 56ch;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  will-change: opacity, transform;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggering Delays */
+.reveal.delay-1 {
+  transition-delay: 0.1s; /* Waits 200ms before starting */
+}
+
+.reveal.delay-2 {
+  transition-delay: 0.25s; /* Waits 400ms before starting */
+}
+
+.reveal.delay-3 {
+  transition-delay: 0.4s; /* Waits 600ms before starting */
+}
+
+.reveal.delay-4 {
+  transition-delay: 0.55s; /* Waits 600ms before starting */
+}
+
+.reveal.delay-5 {
+  transition-delay: 0.7s; /* Waits 600ms before starting */
+}
+
+.reveal.delay-6 {
+  transition-delay: 0.85s; /* Waits 600ms before starting */
+}
+
+/* ---------- Message ---------- */
+
+.message p {
+  font-family: "Fraunces", serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.6;
+  color: var(--cream);
+}
+
+.signed {
+  margin-top: 1.6rem;
+  color: var(--gold);
+  font-family: "Sora", sans-serif;
+  font-size: 0.95rem;
+}
+
+/* ---------- Gallery ---------- */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+
+.frame {
+  aspect-ratio: 1;
+  border-radius: 14px;
+  background: linear-gradient(150deg, #3b2b4c, #2a1f3a);
+  border: 1px solid rgba(244, 201, 93, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cream-dim);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.6rem;
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease;
+}
+
+.frame:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  border-color: var(--coral);
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* ---------- Wishes list ---------- */
+
+.wishes {
+  list-style: none;
+  margin-top: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wishes li {
+  background: rgba(244, 201, 93, 0.06);
+  border-left: 2px solid var(--gold);
+  padding: 1rem 1.3rem;
+  border-radius: 0 12px 12px 0;
+  color: var(--cream-dim);
+  font-size: 0.98rem;
+}
+
+.wishes li strong {
+  color: var(--cream);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.25rem;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+}
+
+/* ---------- Countdown-style detail row ---------- */
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  margin-top: 2rem;
+}
+
+.detail {
+  flex: 1 1 140px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 14px;
+  padding: 1.3rem;
+  text-align: center;
+}
+
+.detail .label {
+  font-size: 0.78rem;
+  color: var(--cream-dim);
+  margin-bottom: 0.4rem;
+}
+
+.detail .value {
+  font-family: "Fraunces", serif;
+  font-size: 1.3rem;
+  color: var(--gold);
+}
+
+/* ---------- Footer ---------- */
+
+footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 4rem 1.5rem 5rem;
+  color: var(--cream-dim);
+  font-size: 0.9rem;
+}
+
+footer .top {
+  font-size: 1.6rem;
+  display: block;
+  margin-bottom: 0.8rem;
+}
+
+@keyframes wobble {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-6deg);
+  }
+  75% {
+    transform: rotate(6deg);
+  }
+}
+
+@media (max-width: 560px) {
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .panel {
+    padding: 2.2rem 1.5rem;
+  }
+}
